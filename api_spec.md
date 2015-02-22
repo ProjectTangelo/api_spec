@@ -4,19 +4,34 @@ FORMAT: 1A
 
 ## Home Page [/]
 ### Get Index [GET]
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat doloremque ex, ullam obcaecati consectetur veritatis ab illo corrupti aperiam, neque rerum assumenda possimus molestiae perspiciatis quia consequatur debitis, error reprehenderit.
-
 + Response (application/json)
 
-    {
-        "hello": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi vero accusantium, veritatis deleniti animi iure, facilis quibusdam odio perferendis ducimus ut repellendus est, esse nobis. Tempore debitis provident ipsa fugiat."
-    }
+	{
+		"hello": "world"
+	}
 
 
 ## Nodes [/nodes]
 ### Get Nodes [GET]
-Not yet implemented
+Get a response from a server
++ Response (application/json)
+    [{
+        "name" : "node01",
+        "size" : "small",
+        "memory": {
+            "free" : 300, 
+            "total" : 1024
+        }
+    },{
+        "name" : "node02",
+        "size" : "small",
+        "memory": {
+            "free" : 120, 
+            "total" : 1024
+        }
+      }]
+
+
 
 ### New Node [POST]
 Not yet implemented
