@@ -111,7 +111,7 @@ Not yet implemented
 ### Delete Users [DELETE]
 Not yet implemented
 
-## Authencitation
+## Authentication
 ## Login [/login]
 
 
