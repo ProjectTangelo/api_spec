@@ -2,36 +2,20 @@ FORMAT: 1A
 
 # Tangelo API Documentation
 
+##Basics
+
+Response to any request is either an error or the corresponding data.
+
+######Error syntax:
+```json
+{
+  "error": {
+    "message": "Your error message"
+  }
+}
+```
+
 ## Home Page [/]
-### Get Index [GET]
-+ Response (application/json)
-
-	{
-		"hello": "world"
-	}
-
-
-## Nodes [/nodes]
-### Get Nodes [GET]
-Get a response from a server
-+ Response (application/json)
-    [{
-        "name" : "node01",
-        "size" : "small",
-        "memory": {
-            "free" : 300, 
-            "total" : 1024
-        }
-    },{
-        "name" : "node02",
-        "size" : "small",
-        "memory": {
-            "free" : 120, 
-            "total" : 1024
-        }
-      }]
-
-
 
 ### New Node [POST]
 Not yet implemented
@@ -97,21 +81,80 @@ Not yet implemented
 ### Delete Document [DELETE]
 Not yet implemented
 
-## Users [/users]
+## Users [/user]
 
-### Get Users [GET]
-Not yet implemented
+### Get Users [GET /user/:id]
+Get a user's data by ID. Accepts requests from Admin users or users who are logged in with the same ID.
 
-### New Users [POST]
-Not yet implemented
+Response is either the user or an error.
++ as Admin
+```json
+  {
+    "_id": "5509b80c87d6a08b1cf4ac83",
+    "username": "tyler",
+    "password": "$2a$10$CPUzSlqtXjNxA.oSkJnyhuTFr66yI0CqomejRGbvVDdgalUN0zbdy",
+    "__v": 0,
+    "type": "user",
+    "email": "tyler@tyler.rylet"
+  }
+```
++ as "tyler"
+```json
+  {
+    "_id": "5509b80c87d6a08b1cf4ac83",
+    "username": "tyler",
+    "email": "tyler@tyler.rylet"
+  }
+```
 
-### Update Users [PUT]
-Not yet implemented
+
+### New Users [POST /user]
+Creates a new user. Requires Admin.
+#####Fields:
+- Username
+  - required
+- Password
+  - required
+- Email
+  - optional
+  - default: ""
+- Type
+  - optional
+  - default: "user"
+  - accepted inputs include
+    - "admin"
+    - "user"
+
+Response is the new user or an error:
+```json
+{
+  "_id": "5509b80c87d6a08b1cf4ac83",
+  "username": "tyler",
+  "password": "$2a$10$CPUzSlqtXjNxA.oSkJnyhuTFr66yI0CqomejRGbvVDdgalUN0zbdy",
+  "__v": 0,
+  "type": "user",
+  "email": "tyler@tyler.rylet"
+}
+```
+
+### Update Users [PUT /user/:id]
+#####Fields:
+Any field accessible to your user level
+
+Response is the updated user or an error:
+```json
+{
+  "_id": "5509b80c87d6a08b1cf4ac83",
+  "username": "tyler",
+  "password": "$2a$10$CPUzSlqtXjNxA.oSkJnyhuTFr66yI0CqomejRGbvVDdgalUN0zbdy",
+  "__v": 0,
+  "type": "user",
+  "email": "bob@bob.bob"
+}
+```
 
 ### Delete Users [DELETE]
 Not yet implemented
 
 ## Authentication
 ## Login [/login]
-
-
